@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import logo from './starstable.png';
-import checkmark from './checkmark.png';
+
 
 import './App.css';
 
@@ -117,11 +117,11 @@ function App() {
                   </div>
                   <form className="checkboxes">
                     <input type="checkbox" id="allTodos" name="allTodos" value="all"></input>
-                    <label for="allTodos"> Show all tasks</label><br></br>
+                    <label> Show all tasks</label><br></br>
                     <input type="checkbox" id="doneTodos" name="doneTodos" value="done"></input>
-                    <label for="doneTodos"> Show done tasks</label><br></br>
+                    <label> Show done tasks</label><br></br>
                     <input type="checkbox" id="todo" name="todo" value="todo"></input>
-                    <label for="todo"> Show tasks to do</label><br></br>
+                    <label> Show tasks to do</label><br></br>
                     <input type="submit" value="Submit"></input>
                   </form>
                 </form>

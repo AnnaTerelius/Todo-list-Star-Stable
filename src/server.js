@@ -56,7 +56,7 @@ createServer({
         let id = request.params.id
         console.log(id)
         console.log(tasks)
-        let task = tasks.find(item=>item.id==id);
+        let task = tasks.find(item=>item.id==parseInt(id));
         if (task.done === true) {
           task.done = false
       } else {
@@ -72,7 +72,7 @@ createServer({
     this.delete("/tasks/:id", (schema, request) => {
       let id = request.params.id
       console.log(id)
-      let index = tasks.findIndex(task => task.id === id)
+      let index = tasks.findIndex(task => task.id === parseInt(id))
       
       return delete tasks[index];
       
