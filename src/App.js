@@ -1,16 +1,37 @@
 import React, {useState, useEffect} from 'react';
-
 import logo from './starstable.png';
-
-
 import './App.css';
+//{tasks.filter(item => item.text.toLowerCase().includes(param.toLowerCase()))
+
+
+
+
 
 function App() {
-  const [tasks, setTasks] = useState(null)
-  const [text, setText] = useState('')
-  const [taskId, setTaskId] = useState(null)
-  const [param, setParam] = useState('')
-  const [searchedTask, setSearchedTask] = useState('')
+  const [tasks, setTasks] = useState(null);
+  const [text, setText] = useState('');
+  const [taskId, setTaskId] = useState(null);
+  const [param, setParam] = useState('');
+  const [searchedTask, setSearchedTask] = useState('');
+  const [filter, setFilter] = useState('All');
+
+  //const FILTER_NAMES = Object.keys(FILTER_MAP);
+
+  const FILTER_MAP = {
+    All: () => true,
+    Active: task => !task.done,
+    Completed: task => task.done,
+    Searchstring: task => task.text.toLowerCase().includes(param.toLowerCase()) 
+  };
+
+  /*const filterList = FILTER_NAMES.map(name => (
+    <FilterButton
+      key={name}
+      name={name}
+      isPressed={name === filter}
+      setFilter={setFilter}
+    />
+  ));*/
  
   
 
@@ -112,22 +133,22 @@ function App() {
                 </div>
                 <form className="paramForm" onSubmit={submitParamForm}>
                   <div>
-                      <input type="text" placeholder="search by text" value={param} onChange={e => setParam(e.target.value)}></input>
+                      <input type="text" placeholder="search by text" value={param} onChange={e => {setParam(e.target.value);setFilter("Searchstring")}}></input>
                       {console.log(param)}
                   </div>
                   <form className="checkboxes">
-                    <input type="checkbox" id="allTodos" name="allTodos" value="all"></input>
+                    <input type="checkbox" id="allTodos" name="allTodos" value="all" onClick={() => setFilter("All")}></input>
+                    {console.log(filter)}
                     <label> Show all tasks</label><br></br>
-                    <input type="checkbox" id="doneTodos" name="doneTodos" value="done"></input>
+                    <input type="checkbox" id="doneTodos" name="doneTodos" value="done" onClick={() => setFilter("Completed")}></input>
                     <label> Show done tasks</label><br></br>
-                    <input type="checkbox" id="todo" name="todo" value="todo"></input>
+                    <input type="checkbox" id="todo" name="todo" value="todo" onClick={() => setFilter("Active")}></input>
                     <label> Show tasks to do</label><br></br>
-                    <input type="submit" value="Submit"></input>
                   </form>
                 </form>
               </div>
-                {tasks.filter(item => item.text.toLowerCase().includes(param.toLowerCase())).map(({id, text, done}) =>(
-                  <li key={id} className={done}>
+                {tasks.filter(FILTER_MAP[filter]).map(({id, text, done}) =>(
+                  <li key={id}>
                     <div>
                       {text}
                       {done}
