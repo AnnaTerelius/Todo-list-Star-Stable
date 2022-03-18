@@ -5,12 +5,6 @@
   pointer-events: none;
 }
 
-/*@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}*/
-
 .App-header {
   background-color: #FBF8F1;
   min-height: 100vh;
@@ -22,9 +16,9 @@
   color: black;
 }
 
-.App-link {
+/*.App-link {
   color: #61dafb;
-}
+}*/
 
 .to-do-background {
   width: 35%;
@@ -32,6 +26,7 @@
 
 .checkboxes {
   font-size: 15px;
+  margin-top: 10px;
 }
 
 .form-container {
@@ -51,12 +46,21 @@ h1 {
 
 .form {
   display: flex;
- 
+}
+
+.btn {
+  background-color: #eb548c;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
 }
 
 ul {
   background: #54BAB9;
-  padding: 40px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 ul li {
